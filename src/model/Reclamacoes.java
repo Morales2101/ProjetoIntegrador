@@ -28,6 +28,10 @@ public class Reclamacoes {
 		this.aprovado = aprovado;
 	}
 
+	public Reclamacoes(){
+		
+	}
+
 	public int getId() {
 		return id;
 	}

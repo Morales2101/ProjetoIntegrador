@@ -11,6 +11,10 @@ public class Secretarias {
 		this.ativa = ativa;
 	}
 
+	public Secretarias() {
+
+	}
+
 	public int getId() {
 		return id;
 	}

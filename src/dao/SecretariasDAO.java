@@ -27,11 +27,13 @@ public class SecretariasDAO {
 		}
 	}
 
-	public Secretarias secretarias(Secretarias secretarias) throws IOException {
+	public Secretarias criar(Secretarias secretarias) throws IOException {
 		String sqlInsert = "insert into Secretarias (IdSecret, Ativa, NomeSecret) " + "values(?,?,?)";
 		try (PreparedStatement pst = conn.prepareStatement(sqlInsert);) {
 			pst.setInt(1, secretarias.getId());
-			pst.setString(2, secretarias.getNome());
+			pst.setBoolean(2, secretarias.getAtiva());
+			pst.setString(3, secretarias.getNome());
+
 
 			pst.execute();
 		} catch (SQLException e) {

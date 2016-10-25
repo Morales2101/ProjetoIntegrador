@@ -42,32 +42,32 @@ public class MapeamentoController {
 	}
 
 	@RequestMapping("nova_reclamação")
-	public String form(Model model) {
+	public String form(Model model) throws IOException {
 		ArrayList<Reclamacoes> tipos = rs.listarReclamacoes();
 		model.addAttribute("tipos", tipos);
-		return "local/localcriar";
+		return "local/reclamacaocriar";
 	}
 
 	@RequestMapping("alterar_reclamacao")
-	public String formAlterar(Model model, Reclamacoes reclamacoes) {
+	public String formAlterar(Model model, Reclamacoes reclamacoes) throws IOException{
 		ArrayList<Reclamacoes> tipos = rs.listarReclamacoes();
 		model.addAttribute("tipos", tipos);
 		return "local/reclamacaoalterar";
 	}
 
 	@RequestMapping("incluir_reclamacao")
-	public String inclusao(@Valid Reclamacoes reclamacoes, BindingResult result, Model model) {
+	public String inclusao(@Valid Reclamacoes reclamacoes, BindingResult result, Model model) throws IOException{
 		if (result.hasErrors()) {
 			ArrayList<Reclamacoes> tipos = rs.listarReclamacoes();
 			model.addAttribute("tipos", tipos);
 			return "local/reclamacaocriar";
 		}
-		rs.criar(reclamacoes);
-		return "redirect:listar_locais";
+		rs.criar(reclamacoes, null);
+		return "redirect:listar_reclamacoes";
 	}
 
 	@RequestMapping("listar_usuarios")
-	public String listagem(Model model, String chave) {
+	public String listagem(Model model, String chave) throws IOException{
 		try {
 			if (chave == null || chave.equals("")) {
 				model.addAttribute("usuarios", UsuariosService.listarUsuarios());
@@ -82,10 +82,10 @@ public class MapeamentoController {
 		return "erro";
 	}
 
-	@RequestMapping("limpar_locais")
-	public String limparListagem(Model model) {
+	@RequestMapping("limpar_reclamacoes")
+	public String limparListagem(Model model) throws IOException{
 		model.addAttribute("locais", null);
-		return "local/locallistar";
+		return "local/reclamacoeslistar";
 	}
 
 	/*@RequestMapping("mostrar_local")
@@ -126,7 +126,7 @@ public class MapeamentoController {
 	}*/
 
 	@RequestMapping("login")
-	public String login() {
+	public String login() throws IOException{
 		return "local/login";
 	}
 
@@ -134,12 +134,12 @@ public class MapeamentoController {
 	public String efetuarLogin(Usuarios usuarios, HttpSession session) throws IOException {
 		if (UsuariosService.validacao(usuarios)) {
 			session.setAttribute("Login", usuarios);
-			return "redirect:listar_locais";
+			return "redirect:listar_reclamacoes";
 		}
 		return "redirect:login";
 	}
 	@RequestMapping("sair")
-	public String sair(HttpSession session){
+	public String sair(HttpSession session) throws IOException{
 		session.invalidate();
 		return "redirect:login";
 	}

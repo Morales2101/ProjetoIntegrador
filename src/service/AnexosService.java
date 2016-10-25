@@ -18,8 +18,8 @@ public class AnexosService {
 		this.dao = dao;
 	}
 	
-	public Anexos criar(Anexos anexos) throws IOException{
-		return dao.criar(anexos);
+	public void criar(Anexos anexos) throws IOException{
+		dao.criar(anexos);
 	} 
 	
 	public void atualizar(Anexos anexos) throws IOException{

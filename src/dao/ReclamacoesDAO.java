@@ -5,6 +5,7 @@ import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import org.springframework.stereotype.Repository;
 import model.Reclamacoes;
+import model.Secretarias;
 
 @Repository
 public class ReclamacoesDAO {
@@ -27,6 +28,11 @@ public class ReclamacoesDAO {
 	@SuppressWarnings("unchecked")
 	public List<Reclamacoes> listarReclamacoes() {
 		return manager.createQuery("select * from reclamacoes").getResultList();
+	}
+
+	public Reclamacoes selecionar(Reclamacoes reclamacoes, Secretarias secretaria) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 }

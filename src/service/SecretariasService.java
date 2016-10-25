@@ -18,8 +18,8 @@ private SecretariasDAO dao;
 		this.dao = dao;
 	}
 
-	public Secretarias criar(Secretarias secretaria) throws IOException{
-		return dao.criar(secretaria);
+	public void criar(Secretarias secretarias) throws IOException{
+		dao.criar(secretarias);
 	}
 
 }

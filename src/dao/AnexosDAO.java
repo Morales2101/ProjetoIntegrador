@@ -13,7 +13,7 @@ public class AnexosDAO {
 	@PersistenceContext
 	EntityManager manager;
 
-	public void anexos(Anexos anexos) {
+	public void criar(Anexos anexos) {
 		manager.persist(anexos);
 	}
 

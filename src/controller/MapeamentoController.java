@@ -2,6 +2,7 @@ package controller;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.List;
 
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
@@ -43,14 +44,14 @@ public class MapeamentoController {
 
 	@RequestMapping("nova_reclamação")
 	public String form(Model model) throws IOException {
-		ArrayList<Reclamacoes> tipos = rs.listarReclamacoes();
+		List<Reclamacoes> tipos = rs.listarReclamacoes();
 		model.addAttribute("tipos", tipos);
 		return "local/reclamacaocriar";
 	}
 
 	@RequestMapping("alterar_reclamacao")
 	public String formAlterar(Model model, Reclamacoes reclamacoes) throws IOException{
-		ArrayList<Reclamacoes> tipos = rs.listarReclamacoes();
+		List<Reclamacoes> tipos = rs.listarReclamacoes();
 		model.addAttribute("tipos", tipos);
 		return "local/reclamacaoalterar";
 	}
@@ -58,7 +59,7 @@ public class MapeamentoController {
 	@RequestMapping("incluir_reclamacao")
 	public String inclusao(@Valid Reclamacoes reclamacoes, BindingResult result, Model model) throws IOException{
 		if (result.hasErrors()) {
-			ArrayList<Reclamacoes> tipos = rs.listarReclamacoes();
+			List<Reclamacoes> tipos = rs.listarReclamacoes();
 			model.addAttribute("tipos", tipos);
 			return "local/reclamacaocriar";
 		}

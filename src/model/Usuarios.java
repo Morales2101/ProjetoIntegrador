@@ -8,19 +8,23 @@ public class Usuarios{
 	private String celular;
 	private String endereco;
 	private String email;
-	private int cpf;
+	private String cargo;
+	private int secretaria;
+	private long cpf;
 	private int matricula;
 	
-	public Usuarios(String id, String senha, String nome, String telefone, String celular, String endereco, int matricula, String email, int cpf){
-		this.id = id;
-		this.senha = senha;
-		this.nome = nome;
-		this.telefone = telefone;
-		this.celular = celular;
-		this.endereco = endereco;
-		this.matricula = matricula;
-		this.email = email;
-		this.cpf = cpf;
+	public Usuarios(String id, String senha, String nome, String telefone, String celular, String endereco, int matricula, String email, long cpf, String cargo, int secretaria){
+		this.setId(id);
+		this.setSenha(senha);
+		this.setNome(nome);
+		this.setTelefone(telefone);
+		this.setCelular(celular);
+		this.setEndereco(endereco);
+		this.setMatricula(matricula);
+		this.setEmail(email);
+		this.setCpf(cpf);
+		this.setCargo(cargo);
+		this.setSecretaria(secretaria);
 	}
 
 	public String getId() {
@@ -87,12 +91,35 @@ public class Usuarios{
 		this.email = email;
 	}
 
-	public int getCpf() {
+	public long getCpf() {
 		return cpf;
 	}
 
-	public void setCpf(int cpf) {
+	public void setCpf(long cpf) {
 		this.cpf = cpf;
+	}
+
+	public int getSecretaria() {
+		return secretaria;
+	}
+
+	public void setSecretaria(int secretaria) {
+		this.secretaria = secretaria;
+	}
+
+	public String getCargo() {
+		return cargo;
+	}
+
+	public void setCargo(String cargo) {
+		if (cargo.equals("Superior"))
+			this.cargo = cargo;
+		else if (cargo.equals("Avaliador"))
+			this.cargo = cargo;
+		else if (cargo.equals("SysAdmin"))
+			this.cargo = cargo;
+		else
+			this.cargo = "Cidadao";
 	}
 
 	@Override

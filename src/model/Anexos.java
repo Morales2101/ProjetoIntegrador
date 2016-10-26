@@ -61,7 +61,10 @@ public class Anexos {
 	}
 
 	public void setTipo(String tipo) {
-		this.tipo = tipo;
+		if(tipo.equals("Anexo"))
+			this.tipo = tipo;
+		else
+			this.tipo = "Comentario";
 	}
 
 	@Override

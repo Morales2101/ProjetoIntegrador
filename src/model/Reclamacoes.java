@@ -8,13 +8,13 @@ public class Reclamacoes {
 	private String descricao;
 	private double latitude;
 	private double longitude;
-	private Secretarias secretaria;
-	private int idAvaliador;
+	private int secretaria;
+	private String idAvaliador;
 	private String resposta;
 	private boolean aprovado;
 	
 	public Reclamacoes(int id,String titulo, String dataHora, String idCidadao, String descricao, double latitude,
-			double longitude, Secretarias secretaria, int idAvaliador, String resposta, boolean aprovado){
+			double longitude, int secretaria, String idAvaliador, String resposta, boolean aprovado){
 		this.id = id;
 		this.titulo = titulo;
 		this.dataHora = dataHora;
@@ -88,19 +88,19 @@ public class Reclamacoes {
 		this.longitude = longitude;
 	}
 
-	public Secretarias getSecretaria() {
+	public int getSecretaria() {
 		return secretaria;
 	}
 
-	public void setSecretaria(Secretarias secretaria) {
+	public void setSecretaria(int secretaria) {
 		this.secretaria = secretaria;
 	}
 
-	public int getIdAvaliador() {
+	public String getIdAvaliador() {
 		return idAvaliador;
 	}
 
-	public void setIdAvaliador(int idAvaliador) {
+	public void setIdAvaliador(String idAvaliador) {
 		this.idAvaliador = idAvaliador;
 	}
 

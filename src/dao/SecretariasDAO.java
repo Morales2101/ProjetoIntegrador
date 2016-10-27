@@ -1,11 +1,12 @@
 package dao;
 
-import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import org.springframework.stereotype.Repository;
 import model.Secretarias;
 
+// Changelog
+// Luis Andrade @ 26/10/2016 22:19 -- MÃ©todo Selecionar adicionado; import list removido.
 
 @Repository
 public class SecretariasDAO {
@@ -18,8 +19,12 @@ public class SecretariasDAO {
 		manager.persist(secretarias);
 	}
 		
-	//NÃO SEI SE ESTÁ REALMENTE CERTO
+	//Nï¿½O SEI SE ESTï¿½ REALMENTE CERTO
 	public void existeSecretarias(Secretarias secretarias) {
 		manager.merge(manager.find(Secretarias.class, secretarias.getId()));
+	}
+	
+	public Secretarias selecionar(int idSecretaria){
+		return manager.find(Secretarias.class, idSecretaria);
 	}
 }

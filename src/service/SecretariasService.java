@@ -26,7 +26,7 @@ private SecretariasDAO dao;
 	}
 	
 	public Secretarias selecionar(int idSecretaria) throws IOException {
-		dao.selecionar(idSecretaria);
+		return dao.selecionar(idSecretaria);
 	}
 
 }

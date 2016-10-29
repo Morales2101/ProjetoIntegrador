@@ -63,24 +63,18 @@ public class MapeamentoController {
 			model.addAttribute("tipos", tipos);
 			return "local/reclamacaocriar";
 		}
-		rs.criar(reclamacoes, null);
+		rs.criar(reclamacoes);
 		return "redirect:listar_reclamacoes";
 	}
 
 	@RequestMapping("listar_usuarios")
 	public String listagem(Model model, String chave) throws IOException{
-		try {
-			if (chave == null || chave.equals("")) {
-				model.addAttribute("usuarios", UsuariosService.listarUsuarios());
-			} else {
-				model.addAttribute("usuarios", UsuariosService.listarUsuarios(chave));
-			}
-			return "local/locallistar";
-		} catch (IOException e) {
-			e.printStackTrace();
-			model.addAttribute("erro", e);
+		if (chave == null || chave.equals("")) {
+			model.addAttribute("usuarios", UsuariosService.listarUsuarios());
+		} else {
+			model.addAttribute("usuarios", UsuariosService.listarUsuarios(chave));
 		}
-		return "erro";
+		return "local/locallistar";
 	}
 
 	@RequestMapping("limpar_reclamacoes")
@@ -133,7 +127,7 @@ public class MapeamentoController {
 
 	@RequestMapping("efetuarLogin")
 	public String efetuarLogin(Usuarios usuarios, HttpSession session) throws IOException {
-		if (UsuariosService.validacao(usuarios)) {
+		if (UsuariosService.validar(usuarios)) {
 			session.setAttribute("Login", usuarios);
 			return "redirect:listar_reclamacoes";
 		}

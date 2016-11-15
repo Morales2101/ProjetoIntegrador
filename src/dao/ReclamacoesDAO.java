@@ -5,7 +5,7 @@ import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import org.springframework.stereotype.Repository;
 import model.Reclamacoes;
-import model.Secretarias;
+//import model.Secretarias;
 
 @Repository
 public class ReclamacoesDAO {
@@ -21,18 +21,12 @@ public class ReclamacoesDAO {
 		manager.remove(manager.find(Reclamacoes.class, reclamacoes.getId()));
 	}
 
-	public Reclamacoes selecionar(int id) {
-		return manager.find(Reclamacoes.class, id);
+	public Reclamacoes selecionar(Reclamacoes reclamacoes) {
+		return manager.find(Reclamacoes.class, reclamacoes);
 	}
 
 	@SuppressWarnings("unchecked")
 	public List<Reclamacoes> listarReclamacoes() {
 		return manager.createQuery("select * from reclamacoes").getResultList();
 	}
-
-	public Reclamacoes selecionar(Reclamacoes reclamacoes, Secretarias secretaria) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
 }

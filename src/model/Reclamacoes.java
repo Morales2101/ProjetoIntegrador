@@ -8,13 +8,12 @@ public class Reclamacoes {
 	private String descricao;
 	private double latitude;
 	private double longitude;
-	private int secretaria;
 	private String idAvaliador;
 	private String resposta;
 	private boolean aprovado;
-	
-	public Reclamacoes(int id,String titulo, String dataHora, String idCidadao, String descricao, double latitude,
-			double longitude, int secretaria, String idAvaliador, String resposta, boolean aprovado){
+
+	public Reclamacoes(int id, String titulo, String dataHora, String idCidadao, String descricao, double latitude,
+			double longitude, String idAvaliador, String resposta, boolean aprovado) {
 		this.id = id;
 		this.titulo = titulo;
 		this.dataHora = dataHora;
@@ -22,14 +21,13 @@ public class Reclamacoes {
 		this.descricao = descricao;
 		this.latitude = latitude;
 		this.longitude = longitude;
-		this.secretaria = secretaria;
 		this.idAvaliador = idAvaliador;
 		this.resposta = resposta;
 		this.aprovado = aprovado;
 	}
 
-	public Reclamacoes(){
-		
+	public Reclamacoes() {
+
 	}
 
 	public int getId() {
@@ -88,14 +86,6 @@ public class Reclamacoes {
 		this.longitude = longitude;
 	}
 
-	public int getSecretaria() {
-		return secretaria;
-	}
-
-	public void setSecretaria(int secretaria) {
-		this.secretaria = secretaria;
-	}
-
 	public String getIdAvaliador() {
 		return idAvaliador;
 	}
@@ -122,12 +112,9 @@ public class Reclamacoes {
 
 	@Override
 	public String toString() {
-		return "Reclamacoes [id=" + getId() + ", titulo=" + getTitulo() + ", dataHora=" 
-				+ getDataHora() + ", idCidadao=" + getIdCidadao()
-				+ ", descricao=" + getDescricao() + ", latitude=" + getLatitude()
-				+ ", longitude=" + getLongitude() + ", secretaria="
-				+ getSecretaria() + ", idAvaliador=" + getIdAvaliador() + 
-				", resposta=" + getResposta() + ", aprovado=" + aprovado
-				+ "]";
+		return "Reclamacoes [id=" + getId() + ", titulo=" + getTitulo() + ", dataHora=" + getDataHora() + ", idCidadao="
+				+ getIdCidadao() + ", descricao=" + getDescricao() + ", latitude=" + getLatitude() + ", longitude="
+				+ getLongitude() + ", idAvaliador=" + getIdAvaliador() + ", resposta=" + getResposta() + ", aprovado="
+				+ aprovado + "]";
 	}
 }

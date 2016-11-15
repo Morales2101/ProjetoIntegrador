@@ -18,13 +18,5 @@ public class SecretariasDAO {
 	public void criar(Secretarias secretarias) {
 		manager.persist(secretarias);
 	}
-		
-	//N�O SEI SE EST� REALMENTE CERTO
-	public void existeSecretarias(Secretarias secretarias) {
-		manager.merge(manager.find(Secretarias.class, secretarias.getId()));
-	}
-	
-	public Secretarias selecionar(int idSecretaria){
-		return manager.find(Secretarias.class, idSecretaria);
-	}
+			
 }

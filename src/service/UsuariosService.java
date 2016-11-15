@@ -17,18 +17,7 @@ public class UsuariosService {
 		this.dao = dao;
 	}
 
-	public boolean validar(Usuarios usuarios) throws IOException{
+	public boolean validar(Usuarios usuarios) throws IOException {
 		return dao.validar(usuarios);
 	}
-
-	public Object listarUsuarios() {
-		// TODO Auto-generated method stub
-		return null;
-	}
-	
-	public Object listarUsuarios(String chave) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-	
 }

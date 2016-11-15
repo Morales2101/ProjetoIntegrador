@@ -17,7 +17,7 @@ public class AnexosDAO {
 		manager.persist(anexos);
 	}
 
-	public void atualizar(Anexos anexos) {
+	public void editar(Anexos anexos) {
 		manager.merge(manager.find(Anexos.class, anexos.getId()));
 	}
 
@@ -31,6 +31,6 @@ public class AnexosDAO {
 
 	@SuppressWarnings("unchecked")
 	public List<Anexos> selecionarTodos() {
-		return manager.createQuery("select * from Anexos").getResultList();
+		return manager.createQuery("select * from anexos").getResultList();
 	}
 }

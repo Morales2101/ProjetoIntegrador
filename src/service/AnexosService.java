@@ -22,8 +22,8 @@ public class AnexosService {
 		dao.criar(anexos);
 	} 
 	
-	public void atualizar(Anexos anexos) throws IOException{
-		dao.atualizar(anexos);
+	public void editar(Anexos anexos) throws IOException{
+		dao.editar(anexos);
 	}
 	
 	public void excluir(Anexos anexos) throws IOException{

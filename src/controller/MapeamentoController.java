@@ -1,10 +1,10 @@
 package controller;
 
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.List;
 
-import javax.servlet.http.HttpSession;
+import javax.servlet.ServletContext;
+import javax.transaction.Transactional;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,93 +12,75 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
+
 
 import model.Reclamacoes;
+import model.Secretarias;
 import model.Usuarios;
 import service.AnexosService;
 import service.ReclamacoesService;
 import service.SecretariasService;
 import service.UsuariosService;
 
-
-
+@Transactional
 @Controller
 public class MapeamentoController {
 	private AnexosService as;
 	private ReclamacoesService rs;
 	private SecretariasService ss;
-	private UsuariosService UsuariosService;
+	private UsuariosService us;
 
 	@Autowired
-	public MapeamentoController(AnexosService as, ReclamacoesService rs, SecretariasService ss, UsuariosService UsuariosService) {
+	public MapeamentoController(AnexosService as, ReclamacoesService rs, SecretariasService ss, UsuariosService us) {
 		this.as = as;
 		this.rs = rs;
 		this.ss = ss;
-		this.UsuariosService = UsuariosService;
+		this.us = us;
 	}
 
 	@RequestMapping("index")
 	public String home() {
-		return "redirect:listar_reclamacoes";
+		return "redirect:listarReclamacoes";
 	}
 
-	@RequestMapping("nova_reclamação")
+	@RequestMapping("novaReclamação")
 	public String form(Model model) throws IOException {
 		List<Reclamacoes> tipos = rs.listarReclamacoes();
 		model.addAttribute("tipos", tipos);
-		return "local/reclamacaocriar";
+		return "reclamacaoCriar";
 	}
 
-	@RequestMapping("alterar_reclamacao")
-	public String formAlterar(Model model, Reclamacoes reclamacoes) throws IOException{
-		List<Reclamacoes> tipos = rs.listarReclamacoes();
-		model.addAttribute("tipos", tipos);
-		return "local/reclamacaoalterar";
-	}
 
-	@RequestMapping("incluir_reclamacao")
+	@RequestMapping("incluirReclamacao")
 	public String inclusao(@Valid Reclamacoes reclamacoes, BindingResult result, Model model) throws IOException{
 		if (result.hasErrors()) {
 			List<Reclamacoes> tipos = rs.listarReclamacoes();
 			model.addAttribute("tipos", tipos);
-			return "local/reclamacaocriar";
+			return "reclamacaoCriar";
 		}
 		rs.criar(reclamacoes);
-		return "redirect:listar_reclamacoes";
+		return "redirect:listarReclamacoes";
 	}
 
-	@RequestMapping("listar_usuarios")
-	public String listagem(Model model, String chave) throws IOException{
-		if (chave == null || chave.equals("")) {
-			model.addAttribute("usuarios", UsuariosService.listarUsuarios());
-		} else {
-			model.addAttribute("usuarios", UsuariosService.listarUsuarios(chave));
-		}
-		return "local/locallistar";
-	}
-
-	@RequestMapping("limpar_reclamacoes")
-	public String limparListagem(Model model) throws IOException{
-		model.addAttribute("locais", null);
-		return "local/reclamacoeslistar";
-	}
-
-	/*@RequestMapping("mostrar_local")
-	public String mostrar(Local local, Model model) {
+	@RequestMapping("removerReclamacao")
+	public String remover(Reclamacoes reclamacoes, Model model) {
 		try {
-			ls.mostrar(local);
-			return "local/localmostrar";
+			rs.remover(reclamacoes);
+			return "redirect:listarReclamacoes";
 		} catch (IOException e) {
 			e.printStackTrace();
 			model.addAttribute("erro", e);
 		}
 		return "erro";
 	}
-
-	/*@RequestMapping("remover_local")
-	public String remover(Local local, Model model) {
+	
+	@RequestMapping("atualizarReclamacao")
+	public String atualizar(Reclamacoes reclamacoes, Model model, @RequestParam("file") MultipartFile file) {
 		try {
-			ls.remover(local);
+			rs.atualizar(reclamacoes);
+			rs.gravarImagem(servletContext, reclamacoes, file);
 			return "redirect:listar_locais";
 		} catch (IOException e) {
 			e.printStackTrace();
@@ -106,37 +88,4 @@ public class MapeamentoController {
 		}
 		return "erro";
 	}
-
-	/*	@RequestMapping("atualizar_local")
-	public String atualizar(Local local, Model model) {
-
-		try {
-			ls.atualizar(local);
-			return "redirect:listar_locais";
-		} catch (IOException e) {
-			e.printStackTrace();
-			model.addAttribute("erro", e);
-		}
-		return "erro";
-	}*/
-
-	@RequestMapping("login")
-	public String login() throws IOException{
-		return "local/login";
-	}
-
-	@RequestMapping("efetuarLogin")
-	public String efetuarLogin(Usuarios usuarios, HttpSession session) throws IOException {
-		if (UsuariosService.validar(usuarios)) {
-			session.setAttribute("Login", usuarios);
-			return "redirect:listar_reclamacoes";
-		}
-		return "redirect:login";
-	}
-	@RequestMapping("sair")
-	public String sair(HttpSession session) throws IOException{
-		session.invalidate();
-		return "redirect:login";
-	}
-
 }

@@ -10,7 +10,7 @@ public class AutorizadorInterceptor extends HandlerInterceptorAdapter {
 	public boolean preHandle(HttpServletRequest request,
 			HttpServletResponse response, Object controller) throws Exception {
 		String uri = request.getRequestURI();
-		if (uri.endsWith("loginForm") || uri.endsWith("fazer_login")
+		if (uri.endsWith("indexlogin") || uri.endsWith("indexlogin")
 				|| uri.contains("css") || uri.contains("js")
 				|| uri.contains("img") || uri.contains("rest")) {
 			return true;

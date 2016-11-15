@@ -24,9 +24,5 @@ private SecretariasDAO dao;
 	public void criar(Secretarias secretarias) throws IOException{
 		dao.criar(secretarias);
 	}
-	
-	public Secretarias selecionar(int idSecretaria) throws IOException {
-		return dao.selecionar(idSecretaria);
-	}
 
 }

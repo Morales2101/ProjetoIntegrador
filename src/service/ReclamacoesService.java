@@ -23,16 +23,21 @@ public class ReclamacoesService {
 		dao.criar(reclamacoes);
 	}
 	
-	public void remover(Reclamacoes reclamacoes, Secretarias secretaria) throws IOException{
-	dao.excluir(reclamacoes);
+	public void remover(Reclamacoes reclamacoes) throws IOException{
+		dao.excluir(reclamacoes);
+	}
+	
+	public void selecionar(Reclamacoes reclamacoes){
+		dao.selecionar(reclamacoes);
 	}
 	
 	public List<Reclamacoes> listarReclamacoes() throws IOException{
 		return dao.listarReclamacoes();
 	}
 
-	public Reclamacoes mostrar(Reclamacoes reclamacoes, Secretarias secretaria) throws IOException{
-		return dao.selecionar(reclamacoes, secretaria);
+	public void atualizar(Reclamacoes reclamacoes) {
+		// TODO Auto-generated method stub
+		
 	}
 
 }
